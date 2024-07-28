@@ -30,10 +30,10 @@
 
   <ItemGroup>
     <Reference Include="PS3Lib">
-      <HintPath>..\..\Open Source UPDATE 2.1\BO1 RTM TOOL 2.1\PS3Lib.dll</HintPath>
+      <HintPath>Librairies\PS3Lib.dll</HintPath>
     </Reference>
     <Reference Include="PS3ManagerAPI">
-      <HintPath>..\..\Open Source UPDATE 2.1\BO1 RTM TOOL 2.1\bin\Debug\PS3ManagerAPI.dll</HintPath>
+      <HintPath>Librairies\PS3ManagerAPI.dll</HintPath>
     </Reference>
   </ItemGroup>
 
