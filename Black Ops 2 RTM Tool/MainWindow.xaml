@@ -1,0 +1,197 @@
+﻿<Window x:Class="Black_Ops_2_RTM_Tool.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
+        xmlns:local="clr-namespace:Black_Ops_2_RTM_Tool"
+        mc:Ignorable="d"
+        Title="Black Ops 2 RTM Tool" Height="450" Width="800" FontFamily="Open Sans" FontSize="18">
+
+    <Grid>
+        <TabControl>
+            <TabItem Header="Connexion">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Label  Grid.Row="0" Content="Adresse IP de la PS3 :" FontWeight="Bold"  Height="35"/>
+                        <TextBox x:Name="IPTextBox" Text="192.168.1.1" Grid.Row="1"/>
+                        <Button x:Name="ConnexionButton" Grid.Row="2" Content="Connexion" Background="WhiteSmoke" Click="ConnexionButton_Click" HorizontalAlignment="Stretch" FontSize="18" Height="35"/>
+                        <Button x:Name="AttachButton" Grid.Row="3" Content="Attacher" Background="WhiteSmoke" Click="AttachButton_Click" HorizontalAlignment="Stretch" FontSize="18" Height="35"/>
+                        <Border Grid.Row="3" BorderBrush="Black" BorderThickness="0 0 0 0.5"/>
+
+                        <Label Grid.Row="5" Content="Changer de Console ID :"  Height="35" FontWeight="Bold"/>
+                        <TextBox x:Name="CIDTextbox" Grid.Row="6" Text="Insérer votre nouveau CID"/>
+                        <Button x:Name="CIDButton" Grid.Row="7" Content="Changer le CID" Click="CIDButton_Click" HorizontalAlignment="Stretch" FontSize="18" Height="35" Background="WhiteSmoke"/>
+                    </Grid>
+                    <Border Grid.Column="1" BorderBrush="Black" BorderThickness="1 0 1 0"/>
+                    <Grid Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Label Content="Etat de la connexion" HorizontalAlignment="Center" FontWeight="Bold"  Height="35"/>
+                        <Border Grid.Row="0" BorderBrush="Black" BorderThickness="0 0 0 0.5"/>
+                        <Label x:Name="ConnexionLabel" Content="Déconnecté" Foreground="RED" FontWeight="Bold" HorizontalAlignment="Center" Grid.Row="1"  Height="35"/>
+                        <Border Grid.Row="1" BorderBrush="Black" BorderThickness="0 0 0 0.5"/>
+                        <Label Content="Etat de l'attachement" HorizontalAlignment="Center" FontWeight="Bold" Grid.Row="2"  Height="35"/>
+                        <Border Grid.Row="2" BorderBrush="Black" BorderThickness="0 0 0 0.5"/>
+                        <Label x:Name="AttachLabel" Content="Détaché" Foreground="RED" FontWeight="Bold" HorizontalAlignment="Center" Grid.Row="3"  Height="35"/>
+                        <Border Grid.Row="3" BorderBrush="Black" BorderThickness="0 0 0 0.5"/>
+
+                        <Label Content="Température Cell (°C) :" FontWeight="Bold" Grid.Row="5" Height="35"/>
+                        <Label Content="" x:Name="TempCellLabel" FontWeight="Bold" Grid.Row="6" Height="35" HorizontalAlignment="Stretch"/>
+                        <Label Content="Température RSX (°C) :" FontWeight="Bold" Grid.Row="7" Height="35"/>
+                        <Label Content="" x:Name="TempRSXLabel" FontWeight="Bold" Grid.Row="8" Height="35" HorizontalAlignment="Stretch"/>
+
+                        <CheckBox Content="Rafraîchissment Auto" x:Name="RefreshTempCheck" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="10" Checked="RefreshTempCheck_Checked"/>
+
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Stats">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="80"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Label Content="Prestige : " Grid.Row="0" Height="35" HorizontalAlignment="Left" FontWeight="Bold"/>
+                        <ComboBox x:Name="PrestigeComboBox" ItemsSource="{Binding PrestigeIcons, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Width="120" Grid.Row="1" Height="80" SelectionChanged="ComboBox_SelectionChanged">
+                            <ComboBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel Orientation="Horizontal" Background="Gray"/>
+                                </ItemsPanelTemplate>
+                            </ComboBox.ItemsPanel>
+                            <ComboBox.ItemContainerStyle>
+                                <Style TargetType="ComboBoxItem">
+                                    <Setter Property="Height" Value="80"/>
+                                    <Setter Property="Width" Value="80"/>
+                                </Style>
+                            </ComboBox.ItemContainerStyle>
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding Path=Path}" Width="80" Height="80"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Button x:Name="LegitStatButton" Content="Legit Stats" HorizontalAlignment="Stretch" FontWeight="Bold" Grid.Row="0" Click="LegitStatButton_Click" />
+                        <Button x:Name="LowStatButton" Content="Low Stats" HorizontalAlignment="Stretch" FontWeight="Bold" Grid.Row="1" Click="LowStatButton_Click" />
+                        <Button x:Name="MediumStatButton" Content="Medium Stats" HorizontalAlignment="Stretch" FontWeight="Bold" Grid.Row="2" Click="MediumStatButton_Click" />
+                        <Button x:Name="HighStatButton" Content="High Stats" HorizontalAlignment="Stretch" FontWeight="Bold" Grid.Row="3" Click="HighStatButton_Click" />
+                        <Button x:Name="LevelButton" Content="Level 55" HorizontalAlignment="Stretch" FontWeight="Bold" Grid.Row="4" Click="LevelButton_Click" />
+                        <Button x:Name="PreOrderBonusButton" Content="Pre-Order Bonuses" HorizontalAlignment="Stretch" FontWeight="Bold" Grid.Row="5" Click="PreOrderBonusButton_Click" />
+                        <Button x:Name="UnlockAllButton" Content="Unlock All" HorizontalAlignment="Stretch" FontWeight="Bold" Grid.Row="6" Click="UnlockAllButton_Click" />
+                        <Button x:Name="TokenButton" Content="255 Unlock Tokens" HorizontalAlignment="Stretch" FontWeight="Bold" Grid.Row="7" Click="TokenButton_Click" />
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Non Hôte">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Label Content="Changement de Pseudo" Height="35" FontWeight="Bold" HorizontalAlignment="Center"/>
+                        <TextBox x:Name="PseudoTextBox" Grid.Row="1" Height="35"/>
+                        <Button x:Name="ChangePseudoButton" Grid.Row="2" Height="35" Content="Appliquer" Click="ChangePseudoButton_Click" HorizontalAlignment="Stretch"/>
+                        <Label Content="Changement Nom de Clan" Grid.Row="4" Height="35" FontWeight="Bold" HorizontalAlignment="Center"/>
+                        <TextBox x:Name="ClanTagTextBox" Grid.Row="5" Height="35"/>
+                        <Button x:Name="ChangeClanTagButton" Grid.Row="6" Height="35" Content="Appliquer" Click="ChangeClanTagButton_Click" HorizontalAlignment="Stretch"/>
+                    </Grid>
+                    <Grid Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <ToggleButton x:Name="ToggleUAV" Content="UAV" Style="{StaticResource ToggleButtonSwitch}" HorizontalAlignment="Left" Grid.Row="0" Checked="ToggleButton_Checked"/>
+                        <ToggleButton x:Name="ToggleVSAT" Content="VSAT" Style="{StaticResource ToggleButtonSwitch}" HorizontalAlignment="Left" Grid.Row="1" Checked="ToggleVSAT_Checked"/>
+                        <ToggleButton x:Name="ToggleRedBoxes" Content="Red Boxes" Style="{StaticResource ToggleButtonSwitch}" HorizontalAlignment="Left" Grid.Row="2" Checked="ToggleRedBoxes_Checked"/>
+                        <ToggleButton x:Name="ToggleLazer" Content="Lazer" Style="{StaticResource ToggleButtonSwitch}" HorizontalAlignment="Left" Grid.Row="3" Checked="ToggleLazer_Checked"/>
+                        <ToggleButton x:Name="ToggleBigNames" Content="Big Names" Style="{StaticResource ToggleButtonSwitch}" HorizontalAlignment="Left" Grid.Row="4" Checked="ToggleBigNames_Checked"/>
+                        <ToggleButton x:Name="ToggleNoRecoil" Content="No Recoil" Style="{StaticResource ToggleButtonSwitch}" HorizontalAlignment="Left" Grid.Row="5" Checked="ToggleNoRecoil_Checked"/>
+                        <ToggleButton x:Name="ToggleWallhack" Content="Wall Hack" Style="{StaticResource ToggleButtonSwitch}" HorizontalAlignment="Left" Grid.Row="6" Checked="ToggleWallhack_Checked"/>
+                        <ToggleButton x:Name="ToggleSteadyAim" Content="Steady Aim" Style="{StaticResource ToggleButtonSwitch}" HorizontalAlignment="Left" Grid.Row="7" Checked="ToggleSteadyAim_Checked"/>
+                        <ToggleButton x:Name="ToggleTargetFinder" Content="Target Finder" Style="{StaticResource ToggleButtonSwitch}" HorizontalAlignment="Left" Grid.Row="8" Checked="ToggleTargetFinder_Checked"/>
+                        <ToggleButton x:Name="ToggleFloatingBodies" Content="Floating Bodies" Style="{StaticResource ToggleButtonSwitch}" HorizontalAlignment="Left" Grid.Row="9" Checked="ToggleFloatingBodies_Checked"/>
+                        <ToggleButton x:Name="ToggleForceHost" Content="Force Host (MP)" Style="{StaticResource ToggleButtonSwitch}" HorizontalAlignment="Left" Grid.Row="10" Checked="ToggleForceHost_Checked"/>
+                    </Grid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
