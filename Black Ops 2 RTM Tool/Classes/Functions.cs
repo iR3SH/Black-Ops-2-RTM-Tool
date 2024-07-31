@@ -1,11 +1,13 @@
 ﻿using PS3Lib;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Text;
 using System.Windows.Documents;
 using System.Windows.Media.Imaging;
 using System.Xml.Serialization;
+using static System.Formats.Asn1.AsnWriter;
 namespace Black_Ops_2_RTM_Tool.Classes
 {
     public class Functions
@@ -364,6 +366,31 @@ namespace Black_Ops_2_RTM_Tool.Classes
         {
             Buffer = [0xff, 0xff];
             API.SetMemory(0x2706938, Buffer);
+        }
+        public void EditScore(int score)
+        {
+            Buffer = BitConverter.GetBytes(score);
+            API.SetMemory(0x26fd050, Buffer);
+        }
+        public void EditWins(int wins)
+        {
+            Buffer = BitConverter.GetBytes(wins);
+            API.SetMemory(0x26fd152, Buffer);
+        }
+        public void EditLosses(int losses)
+        {
+            Buffer = BitConverter.GetBytes(losses);
+            API.SetMemory(0x26fcbe2, Buffer);
+        }
+        public void EditKills(int kills)
+        {
+            Buffer = BitConverter.GetBytes(kills);
+            API.SetMemory(0x26fcb70, Buffer);
+        }
+        public void EditDeaths(int deaths)
+        {
+            Buffer = BitConverter.GetBytes(deaths);
+            API.SetMemory(0x26fc942, Buffer);
         }
     }
 }

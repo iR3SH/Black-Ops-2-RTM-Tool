@@ -264,5 +264,30 @@ namespace Black_Ops_2_RTM_Tool
         {
             Function.Do255Token();
         }
+
+        private void ScoreButton_Click(object sender, RoutedEventArgs e)
+        {
+            Function.EditScore(Convert.ToInt32(ScoreNumericUpDown.Value));
+        }
+
+        private void WinsButton_Click(object sender, RoutedEventArgs e)
+        {
+            Function.EditWins(Convert.ToInt32(WinsNumericUpDown.Value));
+        }
+
+        private void LossesButton_Click(object sender, RoutedEventArgs e)
+        {
+            Function.EditLosses(Convert.ToInt32(LossesNumericUpDown.Value));
+        }
+
+        private void KillsButton_Click(object sender, RoutedEventArgs e)
+        {
+            Function.EditKills(Convert.ToInt32(KillsNumericUpDown.Value));
+        }
+
+        private void DeathsButton_Click(object sender, RoutedEventArgs e)
+        {
+            Function.EditDeaths(Convert.ToInt32(DeathsNumericUpDown.Value));
+        }
     }
 }

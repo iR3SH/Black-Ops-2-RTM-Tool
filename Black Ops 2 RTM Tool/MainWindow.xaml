@@ -6,7 +6,7 @@
         xmlns:hc="https://handyorg.github.io/handycontrol"
         xmlns:local="clr-namespace:Black_Ops_2_RTM_Tool"
         mc:Ignorable="d"
-        Title="Black Ops 2 RTM Tool" Height="450" Width="800" FontFamily="Open Sans" FontSize="18">
+        Title="Black Ops 2 RTM Tool" Height="550" Width="800" FontFamily="Open Sans" FontSize="18">
 
     <Grid>
         <TabControl>
@@ -90,7 +90,12 @@
                             <RowDefinition Height="35"/>
                             <RowDefinition Height="35"/>
                             <RowDefinition Height="35"/>
-                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="1*"/>
                         </Grid.RowDefinitions>
                         <Label Content="Prestige : " Grid.Row="0" Height="35" HorizontalAlignment="Left" FontWeight="Bold"/>
                         <ComboBox x:Name="PrestigeComboBox" ItemsSource="{Binding PrestigeIcons, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Width="120" Grid.Row="1" Height="80" SelectionChanged="ComboBox_SelectionChanged">
@@ -111,9 +116,22 @@
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
+                        <Label Content="Score :" Grid.Row="2" FontWeight="Bold" Height="35" HorizontalAlignment="Left"/>
+                        <hc:NumericUpDown Minimum="0" x:Name="ScoreNumericUpDown" Height="35" HorizontalAlignment="Stretch" Grid.Row="3"/>
+                        <Label Content="Wins :" Grid.Row="4" FontWeight="Bold" Height="35" HorizontalAlignment="Left"/>
+                        <hc:NumericUpDown Minimum="0" x:Name="WinsNumericUpDown" Height="35" HorizontalAlignment="Stretch" Grid.Row="5"/>
+                        <Label Content="Losses :" Grid.Row="6" FontWeight="Bold" Height="35" HorizontalAlignment="Left"/>
+                        <hc:NumericUpDown Minimum="0" x:Name="LossesNumericUpDown" Height="35" HorizontalAlignment="Stretch" Grid.Row="7"/>
+                        <Label Content="Kills :" Grid.Row="8" FontWeight="Bold" Height="35" HorizontalAlignment="Left"/>
+                        <hc:NumericUpDown Minimum="0" x:Name="KillsNumericUpDown" Height="35" HorizontalAlignment="Stretch" Grid.Row="9"/>
+                        <Label Content="Deaths :" Grid.Row="10" FontWeight="Bold" Height="35" HorizontalAlignment="Left"/>
+                        <hc:NumericUpDown Minimum="0" x:Name="DeathsNumericUpDown" Height="35" HorizontalAlignment="Stretch" Grid.Row="11"/>
                     </Grid>
                     <Grid Grid.Column="1">
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="80"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
                             <RowDefinition Height="35"/>
                             <RowDefinition Height="35"/>
                             <RowDefinition Height="35"/>
@@ -127,14 +145,37 @@
                             <RowDefinition Height="35"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Button x:Name="LegitStatButton" Content="Legit Stats" HorizontalAlignment="Stretch" FontWeight="Bold" Grid.Row="0" Click="LegitStatButton_Click" />
-                        <Button x:Name="LowStatButton" Content="Low Stats" HorizontalAlignment="Stretch" FontWeight="Bold" Grid.Row="1" Click="LowStatButton_Click" />
-                        <Button x:Name="MediumStatButton" Content="Medium Stats" HorizontalAlignment="Stretch" FontWeight="Bold" Grid.Row="2" Click="MediumStatButton_Click" />
-                        <Button x:Name="HighStatButton" Content="High Stats" HorizontalAlignment="Stretch" FontWeight="Bold" Grid.Row="3" Click="HighStatButton_Click" />
-                        <Button x:Name="LevelButton" Content="Level 55" HorizontalAlignment="Stretch" FontWeight="Bold" Grid.Row="4" Click="LevelButton_Click" />
-                        <Button x:Name="PreOrderBonusButton" Content="Pre-Order Bonuses" HorizontalAlignment="Stretch" FontWeight="Bold" Grid.Row="5" Click="PreOrderBonusButton_Click" />
-                        <Button x:Name="UnlockAllButton" Content="Unlock All" HorizontalAlignment="Stretch" FontWeight="Bold" Grid.Row="6" Click="UnlockAllButton_Click" />
-                        <Button x:Name="TokenButton" Content="255 Unlock Tokens" HorizontalAlignment="Stretch" FontWeight="Bold" Grid.Row="7" Click="TokenButton_Click" />
+                        <Button x:Name="ScoreButton" Grid.Row="3" Content="Set" FontWeight="Bold" FontSize="18" Height="35" HorizontalAlignment="Left" Click="ScoreButton_Click"/>
+                        <Button x:Name="WinsButton" Grid.Row="5" Content="Set" FontWeight="Bold" FontSize="18" Height="35" HorizontalAlignment="Left" Click="WinsButton_Click"/>
+                        <Button x:Name="LossesButton" Grid.Row="7" Content="Set" FontWeight="Bold" FontSize="18" Height="35" HorizontalAlignment="Left" Click="LossesButton_Click"/>
+                        <Button x:Name="KillsButton" Grid.Row="9" Content="Set" FontWeight="Bold" FontSize="18" Height="35" HorizontalAlignment="Left" Click="KillsButton_Click"/>
+                        <Button x:Name="DeathsButton" Grid.Row="11" Content="Set" FontWeight="Bold" FontSize="18" Height="35" HorizontalAlignment="Left" Click="DeathsButton_Click"/>
+                    </Grid>
+                    <Grid Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Button x:Name="LegitStatButton" Content="Legit Stats" HorizontalAlignment="Stretch" FontWeight="Bold" Grid.Row="0" FontSize="18" Height="35" Click="LegitStatButton_Click" />
+                        <Button x:Name="LowStatButton" Content="Low Stats" HorizontalAlignment="Stretch" FontWeight="Bold" Grid.Row="1" FontSize="18" Height="35" Click="LowStatButton_Click" />
+                        <Button x:Name="MediumStatButton" Content="Medium Stats" HorizontalAlignment="Stretch" FontWeight="Bold" Grid.Row="2" FontSize="18" Height="35" Click="MediumStatButton_Click" />
+                        <Button x:Name="HighStatButton" Content="High Stats" HorizontalAlignment="Stretch" FontWeight="Bold" Grid.Row="3" FontSize="18" Height="35" Click="HighStatButton_Click" />
+                        <Button x:Name="LevelButton" Content="Level 55" HorizontalAlignment="Stretch" FontWeight="Bold" Grid.Row="5" FontSize="18" Height="35" Click="LevelButton_Click" />
+                        <Button x:Name="PreOrderBonusButton" Content="Pre-Order Bonuses" HorizontalAlignment="Stretch" FontWeight="Bold" Grid.Row="7" FontSize="18" Height="35" Click="PreOrderBonusButton_Click" />
+                        <Button x:Name="UnlockAllButton" Content="Unlock All" HorizontalAlignment="Stretch" FontWeight="Bold" Grid.Row="9" FontSize="18" Height="35" Click="UnlockAllButton_Click" />
+                        <Button x:Name="TokenButton" Content="255 Unlock Tokens" HorizontalAlignment="Stretch" FontWeight="Bold" Grid.Row="11" FontSize="18" Height="35" Click="TokenButton_Click" />
                     </Grid>
                 </Grid>
             </TabItem>
