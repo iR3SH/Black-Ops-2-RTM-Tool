@@ -80,7 +80,7 @@ namespace Black_Ops_2_RTM_Tool
                 {
                     ConnexionLabel.Content = "Connecté";
                     ConnexionLabel.Foreground = Brushes.DarkGreen;
-                    API.CCAPI.Notify(CCAPI.NotifyIcon.INFO, "Wuilliam depeche toi t beau");
+                    API.CCAPI.Notify(CCAPI.NotifyIcon.INFO, "Connecte au RTM Tool Bo2");
                     API.CCAPI.RingBuzzer(CCAPI.BuzzerMode.Single);
                     GetTemperature();
                 }
@@ -95,7 +95,7 @@ namespace Black_Ops_2_RTM_Tool
                 {
                     ConnexionLabel.Content = "Connecté";
                     ConnexionLabel.Foreground = Brushes.DarkGreen;
-                    API.CCAPI.Notify(CCAPI.NotifyIcon.INFO, "Connecte au RTM Tool Bo 2");
+                    API.CCAPI.Notify(CCAPI.NotifyIcon.INFO, "Connecte au RTM Tool Bo2");
                     API.CCAPI.RingBuzzer(CCAPI.BuzzerMode.Single);
                 }
                 else
