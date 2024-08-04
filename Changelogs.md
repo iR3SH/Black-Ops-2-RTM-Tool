@@ -12,3 +12,7 @@ Version 0.2 :
 - Ajustement de la fenêtre de l'application
 - Edition de la lisibilité du code
 - Ajout d'une ComboBox contenant les prestiges permettant ainsi de sélectionner en temps réel le prestige souhaité
+
+Version 0.3 :
+-
+- Ajout des controls en Style (Modifiable dans le App.xaml)

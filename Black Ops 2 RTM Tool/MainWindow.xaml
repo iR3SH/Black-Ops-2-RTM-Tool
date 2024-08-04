@@ -6,7 +6,7 @@
         xmlns:hc="https://handyorg.github.io/handycontrol"
         xmlns:local="clr-namespace:Black_Ops_2_RTM_Tool"
         mc:Ignorable="d"
-        Title="Black Ops 2 RTM Tool" Height="550" Width="800" FontFamily="Open Sans" FontSize="18">
+        Title="Black Ops 2 RTM Tool" Height="550" Width="800" FontFamily="Open Sans" FontSize="18" Background="Black">
 
     <Grid>
         <TabControl Background="Black">
@@ -29,15 +29,15 @@
                             <RowDefinition Height="35"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Label  Grid.Row="0" Content="Adresse IP de la PS3 :" Height="35" Style="{ StaticResource LabelStyle }"/>
-                        <TextBox x:Name="IPTextBox" Text="192.168.1.29" Grid.Row="1" Background="Black" Foreground="LightGray"/>
-                        <Button x:Name="ConnexionButton" Grid.Row="2" Content="Connexion" Click="ConnexionButton_Click" HorizontalAlignment="Stretch" FontSize="18" Height="35" Background="Black" Foreground="WhiteSmoke"/>
-                        <Button x:Name="AttachButton" Grid.Row="3" Content="Attacher" Click="AttachButton_Click" HorizontalAlignment="Stretch" FontSize="18" Height="35" Background="Black" Foreground="WhiteSmoke"/>
+                        <Label  Grid.Row="0" Content="Adresse IP de la PS3 :" Style="{ StaticResource LabelStyle }"/>
+                        <TextBox x:Name="IPTextBox" Text="192.168.1.29" Grid.Row="1" Style="{StaticResource Inputs}"/>
+                        <Button x:Name="ConnexionButton" Grid.Row="2" Content="Connexion" Click="ConnexionButton_Click" Style="{StaticResource DefaultButton}"/>
+                        <Button x:Name="AttachButton" Grid.Row="3" Content="Attacher" Click="AttachButton_Click" Style="{StaticResource DefaultButton}"/>
                         <Border Grid.Row="3" BorderBrush="WhiteSmoke" BorderThickness="0 0 0 0.5"/>
 
-                        <Label Grid.Row="5" Content="Changer de Console ID :"  Height="35" Style="{ StaticResource LabelStyle }"/>
-                        <TextBox x:Name="CIDTextbox" Grid.Row="6" Text="Insérer votre nouveau CID" Background="Black" Foreground="LightGray"/>
-                        <Button x:Name="CIDButton" Grid.Row="7" Content="Changer le CID" Click="CIDButton_Click" HorizontalAlignment="Stretch" FontSize="18" Height="35" Background="Black" FontWeight="DemiBold" Foreground="WhiteSmoke"/>
+                        <Label Grid.Row="5" Content="Changer de Console ID :" Style="{ StaticResource LabelStyle }"/>
+                        <TextBox x:Name="CIDTextbox" Grid.Row="6" Text="Insérer votre nouveau CID" Style="{StaticResource Inputs}"/>
+                        <Button x:Name="CIDButton" Grid.Row="7" Content="Changer le CID" Click="CIDButton_Click" Style="{StaticResource DefaultButton}"/>
                     </Grid>
                     <Border Grid.Column="1" BorderBrush="Black" BorderThickness="1 0 1 0"/>
                     <Grid Grid.Column="1">
@@ -58,19 +58,19 @@
                             <RowDefinition Height="35"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Label Content="Etat de la connexion" Height="35" Style="{ StaticResource LabelStyle }"/>
+                        <Label Content="Etat de la connexion" Style="{ StaticResource LabelStyle }"/>
                         <Border Grid.Row="0" BorderBrush="WhiteSmoke" BorderThickness="0 0 0 0.5"/>
-                        <Label x:Name="ConnexionLabel" Content="Déconnecté" Foreground="DarkRed" FontWeight="Bold" HorizontalAlignment="Center" Grid.Row="1"  Height="35" Background="Black"/>
+                        <Label x:Name="ConnexionLabel" Content="Déconnecté" Grid.Row="1" Style="{StaticResource LabelInfos}"/>
                         <Border Grid.Row="1" BorderBrush="WhiteSmoke" BorderThickness="0 0 0 0.5"/>
                         <Label Content="Etat de l'attachement" Height="35" Grid.Row="2" Style="{ StaticResource LabelStyle }"/>
                         <Border Grid.Row="2" BorderBrush="WhiteSmoke" BorderThickness="0 0 0 0.5"/>
-                        <Label x:Name="AttachLabel" Content="Détaché" Foreground="DarkRed" FontWeight="Bold" HorizontalAlignment="Center" Grid.Row="3"  Height="35" Background="Black"/>
+                        <Label x:Name="AttachLabel" Content="Détaché" Grid.Row="3" Style="{StaticResource LabelInfos}" />
                         <Border Grid.Row="3" BorderBrush="WhiteSmoke" BorderThickness="0 0 0 0.5"/>
 
-                        <Label Content="Température Cell (°C) :" FontWeight="Bold" Grid.Row="5" Height="35" Foreground="WhiteSmoke" Background="Black"/>
-                        <Label Content="" x:Name="TempCellLabel" FontWeight="Bold" Grid.Row="6" Height="35" HorizontalAlignment="Stretch" Background="Black" Foreground="LightGray"/>
-                        <Label Content="Température RSX (°C) :" FontWeight="Bold" Grid.Row="7" Height="35" Background="Black" Foreground="WhiteSmoke"/>
-                        <Label Content="" x:Name="TempRSXLabel" FontWeight="Bold" Grid.Row="8" Height="35" HorizontalAlignment="Stretch" Background="Black" Foreground="LightGray"/>
+                        <Label Content="Température Cell (°C) :" FontWeight="Bold" Grid.Row="5" Style="{StaticResource LabelStyle}"/>
+                        <Label Content="" x:Name="TempCellLabel" FontWeight="Bold" Grid.Row="6" Style="{StaticResource LabelStyle}"/>
+                        <Label Content="Température RSX (°C) :" FontWeight="Bold" Grid.Row="7" Style="{StaticResource LabelStyle}"/>
+                        <Label Content="" x:Name="TempRSXLabel" FontWeight="Bold" Grid.Row="8" Style="{StaticResource LabelStyle}"/>
 
                         <CheckBox Content="Rafraîchissment Auto" x:Name="RefreshTempCheck" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="10" Checked="RefreshTempCheck_Checked" Foreground="WhiteSmoke" FontWeight="DemiBold"/>
 
@@ -100,8 +100,8 @@
                             <RowDefinition Height="35"/>
                             <RowDefinition Height="1*"/>
                         </Grid.RowDefinitions>
-                        <Label Content="Prestige : " Grid.Row="0" Height="35" HorizontalAlignment="Left" FontWeight="Bold"/>
-                        <ComboBox x:Name="PrestigeComboBox" ItemsSource="{Binding PrestigeIcons, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Width="120" Grid.Row="1" Height="80" SelectionChanged="ComboBox_SelectionChanged">
+                        <Label Content="Prestige : " Grid.Row="0" Style="{ StaticResource LabelLeft }"/>
+                        <ComboBox x:Name="PrestigeComboBox" ItemsSource="{Binding PrestigeIcons, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CustomComboBox}" Grid.Row="1" SelectionChanged="ComboBox_SelectionChanged">
                             <ComboBox.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <WrapPanel Orientation="Horizontal" Background="Gray"/>
@@ -119,16 +119,16 @@
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
-                        <Label Content="Score :" Grid.Row="2" FontWeight="Bold" Height="35" HorizontalAlignment="Left"/>
-                        <hc:NumericUpDown Minimum="0" x:Name="ScoreNumericUpDown" Height="35" HorizontalAlignment="Stretch" Grid.Row="3"/>
-                        <Label Content="Wins :" Grid.Row="4" FontWeight="Bold" Height="35" HorizontalAlignment="Left"/>
-                        <hc:NumericUpDown Minimum="0" x:Name="WinsNumericUpDown" Height="35" HorizontalAlignment="Stretch" Grid.Row="5"/>
-                        <Label Content="Losses :" Grid.Row="6" FontWeight="Bold" Height="35" HorizontalAlignment="Left"/>
-                        <hc:NumericUpDown Minimum="0" x:Name="LossesNumericUpDown" Height="35" HorizontalAlignment="Stretch" Grid.Row="7"/>
-                        <Label Content="Kills :" Grid.Row="8" FontWeight="Bold" Height="35" HorizontalAlignment="Left"/>
-                        <hc:NumericUpDown Minimum="0" x:Name="KillsNumericUpDown" Height="35" HorizontalAlignment="Stretch" Grid.Row="9"/>
-                        <Label Content="Deaths :" Grid.Row="10" FontWeight="Bold" Height="35" HorizontalAlignment="Left"/>
-                        <hc:NumericUpDown Minimum="0" x:Name="DeathsNumericUpDown" Height="35" HorizontalAlignment="Stretch" Grid.Row="11"/>
+                        <Label Content="Score :" Grid.Row="2" Style="{ StaticResource LabelLeft }"/>
+                        <hc:NumericUpDown x:Name="ScoreNumericUpDown" Grid.Row="3" Style="{StaticResource CustomNumericUpDown}"/>
+                        <Label Content="Wins :" Grid.Row="4" FontWeight="Bold" Style="{ StaticResource LabelLeft }"/>
+                        <hc:NumericUpDown x:Name="WinsNumericUpDown" Grid.Row="5" Style="{StaticResource CustomNumericUpDown}"/>
+                        <Label Content="Losses :" Grid.Row="6" Style="{ StaticResource LabelLeft }"/>
+                        <hc:NumericUpDown x:Name="LossesNumericUpDown" Grid.Row="7" Style="{StaticResource CustomNumericUpDown}"/>
+                        <Label Content="Kills :" Grid.Row="8" Style="{ StaticResource LabelLeft }"/>
+                        <hc:NumericUpDown x:Name="KillsNumericUpDown" Grid.Row="9" Style="{StaticResource CustomNumericUpDown}"/>
+                        <Label Content="Deaths :" Grid.Row="10" Style="{ StaticResource LabelLeft }"/>
+                        <hc:NumericUpDown x:Name="DeathsNumericUpDown" Grid.Row="11" Style="{StaticResource CustomNumericUpDown}"/>
                     </Grid>
                     <Grid Grid.Column="1">
                         <Grid.RowDefinitions>
@@ -148,11 +148,11 @@
                             <RowDefinition Height="35"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Button x:Name="ScoreButton" Grid.Row="3" Content="Set" FontWeight="Bold" FontSize="18" Height="35" HorizontalAlignment="Left" Click="ScoreButton_Click"/>
-                        <Button x:Name="WinsButton" Grid.Row="5" Content="Set" FontWeight="Bold" FontSize="18" Height="35" HorizontalAlignment="Left" Click="WinsButton_Click"/>
-                        <Button x:Name="LossesButton" Grid.Row="7" Content="Set" FontWeight="Bold" FontSize="18" Height="35" HorizontalAlignment="Left" Click="LossesButton_Click"/>
-                        <Button x:Name="KillsButton" Grid.Row="9" Content="Set" FontWeight="Bold" FontSize="18" Height="35" HorizontalAlignment="Left" Click="KillsButton_Click"/>
-                        <Button x:Name="DeathsButton" Grid.Row="11" Content="Set" FontWeight="Bold" FontSize="18" Height="35" HorizontalAlignment="Left" Click="DeathsButton_Click"/>
+                        <Button x:Name="ScoreButton" Grid.Row="3" Content="Set" HorizontalAlignment="Left" Style="{StaticResource DefaultButton}" Click="ScoreButton_Click"/>
+                        <Button x:Name="WinsButton" Grid.Row="5" Content="Set" Style="{StaticResource DefaultButton}" HorizontalAlignment="Left" Click="WinsButton_Click"/>
+                        <Button x:Name="LossesButton" Grid.Row="7" Content="Set" Style="{StaticResource DefaultButton}" HorizontalAlignment="Left" Click="LossesButton_Click"/>
+                        <Button x:Name="KillsButton" Grid.Row="9" Content="Set" Style="{StaticResource DefaultButton}" HorizontalAlignment="Left" Click="KillsButton_Click"/>
+                        <Button x:Name="DeathsButton" Grid.Row="11" Content="Set" Style="{StaticResource DefaultButton}" HorizontalAlignment="Left" Click="DeathsButton_Click"/>
                     </Grid>
                     <Grid Grid.Column="2">
                         <Grid.RowDefinitions>
@@ -171,14 +171,14 @@
                             <RowDefinition Height="35"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Button x:Name="LegitStatButton" Content="Legit Stats" HorizontalAlignment="Stretch" FontWeight="Bold" Grid.Row="0" FontSize="18" Height="35" Click="LegitStatButton_Click" />
-                        <Button x:Name="LowStatButton" Content="Low Stats" HorizontalAlignment="Stretch" FontWeight="Bold" Grid.Row="1" FontSize="18" Height="35" Click="LowStatButton_Click" />
-                        <Button x:Name="MediumStatButton" Content="Medium Stats" HorizontalAlignment="Stretch" FontWeight="Bold" Grid.Row="2" FontSize="18" Height="35" Click="MediumStatButton_Click" />
-                        <Button x:Name="HighStatButton" Content="High Stats" HorizontalAlignment="Stretch" FontWeight="Bold" Grid.Row="3" FontSize="18" Height="35" Click="HighStatButton_Click" />
-                        <Button x:Name="LevelButton" Content="Level 55" HorizontalAlignment="Stretch" FontWeight="Bold" Grid.Row="5" FontSize="18" Height="35" Click="LevelButton_Click" />
-                        <Button x:Name="PreOrderBonusButton" Content="Pre-Order Bonuses" HorizontalAlignment="Stretch" FontWeight="Bold" Grid.Row="7" FontSize="18" Height="35" Click="PreOrderBonusButton_Click" />
-                        <Button x:Name="UnlockAllButton" Content="Unlock All" HorizontalAlignment="Stretch" FontWeight="Bold" Grid.Row="9" FontSize="18" Height="35" Click="UnlockAllButton_Click" />
-                        <Button x:Name="TokenButton" Content="255 Unlock Tokens" HorizontalAlignment="Stretch" FontWeight="Bold" Grid.Row="11" FontSize="18" Height="35" Click="TokenButton_Click" />
+                        <Button x:Name="LegitStatButton" Content="Legit Stats" Grid.Row="1"  Style="{StaticResource DefaultButton}" Click="LegitStatButton_Click" />
+                        <Button x:Name="LowStatButton" Content="Low Stats" Grid.Row="2" Style="{StaticResource DefaultButton}" Click="LowStatButton_Click" />
+                        <Button x:Name="MediumStatButton" Content="Medium Stats" Grid.Row="3" Style="{StaticResource DefaultButton}" Click="MediumStatButton_Click" />
+                        <Button x:Name="HighStatButton" Content="High Stats" Grid.Row="4" Style="{StaticResource DefaultButton}" Click="HighStatButton_Click" />
+                        <Button x:Name="LevelButton" Content="Level 55" Grid.Row="6" Style="{StaticResource DefaultButton}" Click="LevelButton_Click" />
+                        <Button x:Name="PreOrderBonusButton" Content="Pre-Order Bonuses" Grid.Row="8" Style="{StaticResource DefaultButton}" Click="PreOrderBonusButton_Click" />
+                        <Button x:Name="UnlockAllButton" Content="Unlock All" Grid.Row="10" Style="{StaticResource DefaultButton}" Click="UnlockAllButton_Click" />
+                        <Button x:Name="TokenButton" Content="255 Unlock Tokens" Grid.Row="12" Style="{StaticResource DefaultButton}" Click="TokenButton_Click" />
                     </Grid>
                 </Grid>
             </TabItem>
@@ -200,12 +200,12 @@
                             <RowDefinition Height="35"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Label Content="Changement de Pseudo" Height="35" FontWeight="Bold" HorizontalAlignment="Center"/>
-                        <TextBox x:Name="PseudoTextBox" Grid.Row="1" Height="35"/>
-                        <Button x:Name="ChangePseudoButton" Grid.Row="2" Height="35" Content="Appliquer" Click="ChangePseudoButton_Click" HorizontalAlignment="Stretch"/>
-                        <Label Content="Changement Nom de Clan" Grid.Row="4" Height="35" FontWeight="Bold" HorizontalAlignment="Center"/>
-                        <TextBox x:Name="ClanTagTextBox" Grid.Row="5" Height="35"/>
-                        <Button x:Name="ChangeClanTagButton" Grid.Row="6" Height="35" Content="Appliquer" Click="ChangeClanTagButton_Click" HorizontalAlignment="Stretch"/>
+                        <Label Content="Changement de Pseudo" Style="{StaticResource LabelStyle}"/>
+                        <TextBox x:Name="PseudoTextBox" Grid.Row="1" Style="{StaticResource Inputs}"/>
+                        <Button x:Name="ChangePseudoButton" Grid.Row="2" Content="Appliquer" Click="ChangePseudoButton_Click" Style="{StaticResource DefaultButton}"/>
+                        <Label Content="Changement Nom de Clan" Grid.Row="4" Style="{StaticResource LabelStyle}"/>
+                        <TextBox x:Name="ClanTagTextBox" Grid.Row="5" Style="{StaticResource Inputs}"/>
+                        <Button x:Name="ChangeClanTagButton" Grid.Row="6" Content="Appliquer" Click="ChangeClanTagButton_Click" Style="{StaticResource DefaultButton}"/>
                     </Grid>
                     <Grid Grid.Column="2">
                         <Grid.RowDefinitions>
@@ -222,17 +222,17 @@
                             <RowDefinition Height="35"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <ToggleButton x:Name="ToggleUAV" Content="UAV" Style="{StaticResource ToggleButtonSwitch}" HorizontalAlignment="Left" Grid.Row="0" Checked="ToggleButton_Checked"/>
-                        <ToggleButton x:Name="ToggleVSAT" Content="VSAT" Style="{StaticResource ToggleButtonSwitch}" HorizontalAlignment="Left" Grid.Row="1" Checked="ToggleVSAT_Checked"/>
-                        <ToggleButton x:Name="ToggleRedBoxes" Content="Red Boxes" Style="{StaticResource ToggleButtonSwitch}" HorizontalAlignment="Left" Grid.Row="2" Checked="ToggleRedBoxes_Checked"/>
-                        <ToggleButton x:Name="ToggleLazer" Content="Lazer" Style="{StaticResource ToggleButtonSwitch}" HorizontalAlignment="Left" Grid.Row="3" Checked="ToggleLazer_Checked"/>
-                        <ToggleButton x:Name="ToggleBigNames" Content="Big Names" Style="{StaticResource ToggleButtonSwitch}" HorizontalAlignment="Left" Grid.Row="4" Checked="ToggleBigNames_Checked"/>
-                        <ToggleButton x:Name="ToggleNoRecoil" Content="No Recoil" Style="{StaticResource ToggleButtonSwitch}" HorizontalAlignment="Left" Grid.Row="5" Checked="ToggleNoRecoil_Checked"/>
-                        <ToggleButton x:Name="ToggleWallhack" Content="Wall Hack" Style="{StaticResource ToggleButtonSwitch}" HorizontalAlignment="Left" Grid.Row="6" Checked="ToggleWallhack_Checked"/>
-                        <ToggleButton x:Name="ToggleSteadyAim" Content="Steady Aim" Style="{StaticResource ToggleButtonSwitch}" HorizontalAlignment="Left" Grid.Row="7" Checked="ToggleSteadyAim_Checked"/>
-                        <ToggleButton x:Name="ToggleTargetFinder" Content="Target Finder" Style="{StaticResource ToggleButtonSwitch}" HorizontalAlignment="Left" Grid.Row="8" Checked="ToggleTargetFinder_Checked"/>
-                        <ToggleButton x:Name="ToggleFloatingBodies" Content="Floating Bodies" Style="{StaticResource ToggleButtonSwitch}" HorizontalAlignment="Left" Grid.Row="9" Checked="ToggleFloatingBodies_Checked"/>
-                        <ToggleButton x:Name="ToggleForceHost" Content="Force Host (MP)" Style="{StaticResource ToggleButtonSwitch}" HorizontalAlignment="Left" Grid.Row="10" Checked="ToggleForceHost_Checked"/>
+                        <ToggleButton x:Name="ToggleUAV" Content="UAV" Style="{StaticResource CustomToggleButton}" Grid.Row="0" Checked="ToggleButton_Checked"/>
+                        <ToggleButton x:Name="ToggleVSAT" Content="VSAT" Style="{StaticResource CustomToggleButton}" Grid.Row="1" Checked="ToggleVSAT_Checked"/>
+                        <ToggleButton x:Name="ToggleRedBoxes" Content="Red Boxes" Style="{StaticResource CustomToggleButton}" Grid.Row="2" Checked="ToggleRedBoxes_Checked"/>
+                        <ToggleButton x:Name="ToggleLazer" Content="Lazer" Style="{StaticResource CustomToggleButton}" Grid.Row="3" Checked="ToggleLazer_Checked"/>
+                        <ToggleButton x:Name="ToggleBigNames" Content="Big Names" Style="{StaticResource CustomToggleButton}" Grid.Row="4" Checked="ToggleBigNames_Checked"/>
+                        <ToggleButton x:Name="ToggleNoRecoil" Content="No Recoil" Style="{StaticResource CustomToggleButton}" Grid.Row="5" Checked="ToggleNoRecoil_Checked"/>
+                        <ToggleButton x:Name="ToggleWallhack" Content="Wall Hack" Style="{StaticResource CustomToggleButton}" Grid.Row="6" Checked="ToggleWallhack_Checked"/>
+                        <ToggleButton x:Name="ToggleSteadyAim" Content="Steady Aim" Style="{StaticResource CustomToggleButton}" Grid.Row="7" Checked="ToggleSteadyAim_Checked"/>
+                        <ToggleButton x:Name="ToggleTargetFinder" Content="Target Finder" Style="{StaticResource CustomToggleButton}" Grid.Row="8" Checked="ToggleTargetFinder_Checked"/>
+                        <ToggleButton x:Name="ToggleFloatingBodies" Content="Floating Bodies" Style="{StaticResource CustomToggleButton}" Grid.Row="9" Checked="ToggleFloatingBodies_Checked"/>
+                        <ToggleButton x:Name="ToggleForceHost" Content="Force Host (MP)" Style="{StaticResource CustomToggleButton}" Grid.Row="10" Checked="ToggleForceHost_Checked"/>
                     </Grid>
                 </Grid>
             </TabItem>
