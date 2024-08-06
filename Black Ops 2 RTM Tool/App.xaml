@@ -99,6 +99,13 @@
                 <Setter Property="BorderBrush" Value="WhiteSmoke"/>
                 <Setter Property="Foreground" Value="WhiteSmoke"/>
             </Style>
+            <Style x:Key="CustomComboBox2" TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}">
+                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                <Setter Property="Height" Value="35"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderBrush" Value="WhiteSmoke"/>
+                <Setter Property="Foreground" Value="WhiteSmoke"/>
+            </Style>
             <!--#endregion-->
             <!--#region NumericUpDown-->
             <Style x:Key="CustomNumericUpDown" TargetType="hc:NumericUpDown" BasedOn="{StaticResource {x:Type hc:NumericUpDown}}">

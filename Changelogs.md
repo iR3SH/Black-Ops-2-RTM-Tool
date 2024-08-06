@@ -16,3 +16,5 @@ Version 0.2 :
 Version 0.3 :
 -
 - Ajout des controls en Style (Modifiable dans le App.xaml)
+- Ajout du PS3Lib v4.6.1
+- Ajout du support de PS3 CFW CEX ou DEX

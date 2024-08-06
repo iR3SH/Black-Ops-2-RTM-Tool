@@ -1,24 +1,20 @@
 ﻿using PS3Lib;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
 using System.Text;
-using System.Windows.Documents;
-using System.Windows.Media.Imaging;
-using System.Xml.Serialization;
-using static System.Formats.Asn1.AsnWriter;
 namespace Black_Ops_2_RTM_Tool.Classes
 {
     public class Functions
     {
         private PS3API API;
-        private CCAPI cCAPI;
         byte[] Buffer = [];
-        public Functions(PS3API API, CCAPI cCAPI)
+        public Functions(PS3API API)
         {
             this.API = API;
-            this.cCAPI = cCAPI;
+        }
+        private void Send(uint Buffer, byte[] Data)
+        {
+            API.SetMemory(Buffer, Data);
         }
         public void DoUAV(bool apply)
         {

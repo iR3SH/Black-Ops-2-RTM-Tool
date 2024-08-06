@@ -1,5 +1,5 @@
 Pré-Requis :
-  - PS3 HEN
+  - PS3 HEN / CFW (CEX ou DEX)
   - .Net 8.0 (https://dotnet.microsoft.com/fr-fr/download/dotnet/thank-you/runtime-desktop-8.0.7-windows-x64-installer)
 
 Librairies :

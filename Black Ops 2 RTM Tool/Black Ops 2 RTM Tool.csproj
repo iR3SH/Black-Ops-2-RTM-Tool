@@ -6,6 +6,17 @@
     <RootNamespace>Black_Ops_2_RTM_Tool</RootNamespace>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Images\favicon.ico</ApplicationIcon>
+    <Platforms>AnyCPU;x86;x64</Platforms>
+    <StartupObject>Black_Ops_2_RTM_Tool.App</StartupObject>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DebugType>embedded</DebugType>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,12 +32,20 @@
     <None Remove="Images\7.png" />
     <None Remove="Images\8.png" />
     <None Remove="Images\9.png" />
+    <None Remove="Images\favicon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Images\favicon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Extended.Wpf.Toolkit" Version="4.6.1" />
     <PackageReference Include="HandyControl" Version="3.5.1" />
     <PackageReference Include="HandyControl.Lang.fr" Version="3.5.1" />
+    <PackageReference Include="Vanara.PInvoke.Kernel32" Version="4.0.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -51,6 +70,7 @@
     <Resource Include="Images\7.png" />
     <Resource Include="Images\8.png" />
     <Resource Include="Images\9.png" />
+    <Resource Include="Images\favicon.ico" />
   </ItemGroup>
 
 </Project>

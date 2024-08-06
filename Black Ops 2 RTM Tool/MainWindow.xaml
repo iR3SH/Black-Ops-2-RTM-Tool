@@ -6,8 +6,14 @@
         xmlns:hc="https://handyorg.github.io/handycontrol"
         xmlns:local="clr-namespace:Black_Ops_2_RTM_Tool"
         mc:Ignorable="d"
-        Title="Black Ops 2 RTM Tool" Height="550" Width="800" FontFamily="Open Sans" FontSize="18" Background="Black">
-
+        Title="Black Ops 2 RTM Tool" Height="550" Width="800" FontFamily="Open Sans" FontSize="18" Background="Black" Icon="Images/favicon.ico">
+    <Window.Resources>
+        <ResourceDictionary>
+            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="WhiteSmoke" />
+            <SolidColorBrush x:Key="{x:Static SystemColors.HotTrackBrushKey}" Color="WhiteSmoke" />
+            <SolidColorBrush x:Key="{x:Static SystemColors.MenuHighlightBrushKey}" Color="WhiteSmoke" />
+        </ResourceDictionary>
+    </Window.Resources>
     <Grid>
         <TabControl Background="Black">
             <TabItem Header="Connexion" Style="{StaticResource DefaultTabItem}">
@@ -27,17 +33,41 @@
                             <RowDefinition Height="35"/>
                             <RowDefinition Height="35"/>
                             <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Label  Grid.Row="0" Content="Adresse IP de la PS3 :" Style="{ StaticResource LabelStyle }"/>
-                        <TextBox x:Name="IPTextBox" Text="192.168.1.29" Grid.Row="1" Style="{StaticResource Inputs}"/>
-                        <Button x:Name="ConnexionButton" Grid.Row="2" Content="Connexion" Click="ConnexionButton_Click" Style="{StaticResource DefaultButton}"/>
-                        <Button x:Name="AttachButton" Grid.Row="3" Content="Attacher" Click="AttachButton_Click" Style="{StaticResource DefaultButton}"/>
-                        <Border Grid.Row="3" BorderBrush="WhiteSmoke" BorderThickness="0 0 0 0.5"/>
+                        <Label Grid.Row="0" Content="Choisissez le Type d'API :" Style="{StaticResource LabelStyle}"/>
+                        <ComboBox x:Name="APIComboBox" ItemsSource="{Binding APIS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="DisplayName" Grid.Row="1" Style="{StaticResource CustomComboBox2}" SelectionChanged="APIComboBox_SelectionChanged">
+                            <ComboBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel Orientation="Vertical" Background="Black"/>
+                                </ItemsPanelTemplate>
+                            </ComboBox.ItemsPanel>
+                            
+                            <ComboBox.ItemContainerStyle>
+                                <Style TargetType="{x:Type ComboBoxItem}">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="true">
+                                            <Setter Property="BorderBrush" Value="WhiteSmoke" />
+                                            <Setter Property="BorderThickness" Value="2" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ComboBox.ItemContainerStyle>
+                        </ComboBox>
+                        <Label  Grid.Row="5" Content="Adresse IP de la PS3 :" Style="{ StaticResource LabelStyle }"/>
+                        <TextBox x:Name="IPTextBox" Text="192.168.1.29" Grid.Row="6" Style="{StaticResource Inputs}"/>
+                        <Button x:Name="ConnexionButton" Grid.Row="7" Content="Connexion" Click="ConnexionButton_Click" Style="{StaticResource DefaultButton}"/>
+                        <Button x:Name="AttachButton" Grid.Row="8" Content="Attacher" Click="AttachButton_Click" Style="{StaticResource DefaultButton}"/>
+                        <Border Grid.Row="8" BorderBrush="WhiteSmoke" BorderThickness="0 0 0 0.5"/>
 
-                        <Label Grid.Row="5" Content="Changer de Console ID :" Style="{ StaticResource LabelStyle }"/>
-                        <TextBox x:Name="CIDTextbox" Grid.Row="6" Text="Insérer votre nouveau CID" Style="{StaticResource Inputs}"/>
-                        <Button x:Name="CIDButton" Grid.Row="7" Content="Changer le CID" Click="CIDButton_Click" Style="{StaticResource DefaultButton}"/>
+                        <Label Grid.Row="10" Content="Changer de Console ID :" Style="{ StaticResource LabelStyle }"/>
+                        <TextBox x:Name="CIDTextbox" Grid.Row="11" Text="Insérer votre nouveau CID" Style="{StaticResource Inputs}"/>
+                        <Button x:Name="CIDButton" Grid.Row="12" Content="Changer le CID" Click="CIDButton_Click" Style="{StaticResource DefaultButton}"/>
                     </Grid>
                     <Border Grid.Column="1" BorderBrush="Black" BorderThickness="1 0 1 0"/>
                     <Grid Grid.Column="1">
@@ -77,7 +107,7 @@
                     </Grid>
                 </Grid>
             </TabItem>
-            <TabItem Header="Stats" Style="{StaticResource DefaultTabItem}">
+            <TabItem Header="Stats" Style="{StaticResource DefaultTabItem}" x:Name="StatsHeader">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -182,7 +212,7 @@
                     </Grid>
                 </Grid>
             </TabItem>
-            <TabItem Header="Non Hôte" Style="{StaticResource DefaultTabItem}">
+            <TabItem Header="Non Hôte" Style="{StaticResource DefaultTabItem}" x:Name="NoHostHeader">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>

@@ -7,7 +7,6 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
 namespace Black_Ops_2_RTM_Tool
@@ -22,24 +21,36 @@ namespace Black_Ops_2_RTM_Tool
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        public List<Images> PrestigeIcons { get { return _PrestigeIcons; } set { _PrestigeIcons = value; NotifyPropertyChanged(); } }
-        public List<Images> _PrestigeIcons { get; set; }
+        public List<Images>? PrestigeIcons { get { return _PrestigeIcons; } set { _PrestigeIcons = value; NotifyPropertyChanged(); } }
+        private List<Images>? _PrestigeIcons { get; set; }
+        public List<API>? APIS { get{ return _APIS; } set {_APIS = value; NotifyPropertyChanged(); } }
+        private List<API>? _APIS { get; set; }
+
         private readonly PS3API API = new();
-        private readonly CCAPI cCAPI;
         DispatcherTimer TempTimer = new();
         Functions Function;
         public MainWindow()
         {
             DataContext = this;
-            API.ChangeAPI(SelectAPI.ControlConsole);
-            cCAPI = API.CCAPI;
-            Function = new(API, cCAPI);
             InitializeComponent();
+            APIS = [
+                new() { DisplayName = "DEX", SelectAPI = SelectAPI.TargetManager },
+                new() { DisplayName = "CEX", SelectAPI = SelectAPI.ControlConsole },
+                new() { DisplayName = "HEN", SelectAPI = SelectAPI.Hen }
+            ];
+            UnlockTool(false);
             TempTimer.Tick += new EventHandler(TempTimerTickEvent);
             TempTimer.Interval = new TimeSpan(0, 1, 0);
-            PrestigeIcons = Function.GetPresitgeIcons();
+            ConnexionButton.IsEnabled = false;
+            AttachButton.IsEnabled = false;
         }
-
+        public void UnlockTool(bool cond)
+        {
+            NoHostHeader.IsEnabled = cond;
+            StatsHeader.IsEnabled = cond;
+            CIDButton.IsEnabled = cond;
+            RefreshTempCheck.IsEnabled = cond;
+        }
         private void ChangeColorTemp(Label label, int temp)
         {
 
@@ -58,8 +69,8 @@ namespace Black_Ops_2_RTM_Tool
         }
         private void GetTemperature()
         {
-            int CellTemp = Convert.ToInt32(cCAPI.GetTemperatureCELL().Replace(" C", ""));
-            int RsxTemp = Convert.ToInt32(cCAPI.GetTemperatureRSX().Replace(" C", ""));
+            int CellTemp = API.GetTemperatureCell();
+            int RsxTemp = API.GetTemperatureRSX();
             TempCellLabel.Content = CellTemp + "°C";
             TempRSXLabel.Content = RsxTemp + " °C";
 
@@ -80,9 +91,10 @@ namespace Black_Ops_2_RTM_Tool
                 {
                     ConnexionLabel.Content = "Connecté";
                     ConnexionLabel.Foreground = Brushes.DarkGreen;
-                    API.CCAPI.Notify(CCAPI.NotifyIcon.INFO, "Connecte au RTM Tool Bo2");
-                    API.CCAPI.RingBuzzer(CCAPI.BuzzerMode.Single);
+                    API.Notify(NotifyIcon.INFO, "Connecte au RTM Tool Bo2");
+                    API.RingBuzzer(BuzzerMode.Single);
                     GetTemperature();
+                    AttachButton.IsEnabled = true;
                 }
                 else
                 {
@@ -95,12 +107,14 @@ namespace Black_Ops_2_RTM_Tool
                 {
                     ConnexionLabel.Content = "Connecté";
                     ConnexionLabel.Foreground = Brushes.DarkGreen;
-                    API.CCAPI.Notify(CCAPI.NotifyIcon.INFO, "Connecte au RTM Tool Bo2");
-                    API.CCAPI.RingBuzzer(CCAPI.BuzzerMode.Single);
+                    API.Notify(NotifyIcon.INFO, "Connecte au RTM Tool Bo2");
+                    API.RingBuzzer(BuzzerMode.Single);
+                    GetTemperature();
+                    AttachButton.IsEnabled = true;
                 }
                 else
                 {
-                    MessageBox.Show("Impossible de se connecter.\r\nVérifier l'adresse IP de votre PS3.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Impossible de se connecter."+ Environment.NewLine +"Vérifier l'adresse IP de votre PS3.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
@@ -111,8 +125,9 @@ namespace Black_Ops_2_RTM_Tool
             {
                 AttachLabel.Content = "Attaché";
                 AttachLabel.Foreground = Brushes.DarkGreen;
-                API.CCAPI.Notify(CCAPI.NotifyIcon.INFO, "Attache au RTM Tool Bo 2");
-                API.CCAPI.RingBuzzer(CCAPI.BuzzerMode.Double);
+                API.Notify(NotifyIcon.INFO, "Attache au RTM Tool Bo 2");
+                API.RingBuzzer(BuzzerMode.Double);
+                UnlockTool(true);
             }
             else
             {
@@ -124,8 +139,8 @@ namespace Black_Ops_2_RTM_Tool
         {
             if(CIDTextbox.Text.Length == 32)
             {
-                API.CCAPI.SetConsoleID(CIDTextbox.Text);
-                API.CCAPI.Notify(CCAPI.NotifyIcon.INFO, "Console ID change avec succes !");
+                API.SetConsoleId(CIDTextbox.Text);
+                API.Notify(NotifyIcon.INFO, "Console ID change avec succes !");
             }
             else
             {
@@ -288,6 +303,21 @@ namespace Black_Ops_2_RTM_Tool
         private void DeathsButton_Click(object sender, RoutedEventArgs e)
         {
             Function.EditDeaths(Convert.ToInt32(DeathsNumericUpDown.Value));
+        }
+
+        private void APIComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(APIComboBox.SelectedIndex > -1)
+            {
+                if (APIS != null)
+                {
+                    SelectAPI select = APIS[APIComboBox.SelectedIndex].SelectAPI;
+                    API.ChangeAPI(select);
+                    Function = new(API);
+                    PrestigeIcons = Function.GetPresitgeIcons();
+                    ConnexionButton.IsEnabled = true;
+                }
+            }
         }
     }
 }
